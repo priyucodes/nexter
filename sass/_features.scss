@@ -1,0 +1,60 @@
+.features {
+  grid-column: center-start / center-end;
+
+  margin: 15rem 0rem;
+
+  // display: grid;
+  // Level 2 of the CSS Grid Layout specification includes a subgrid value for grid-template-columns and grid-template-rows.
+  // Warning: This feature is shipped in Firefox 71, which is currently the only browser to implement subgrid
+  // subgrid : it will allow a grid that is inside a grid to snap its track to its parent grid. Align its columns with its column of the parent grid.
+
+  // grid-template-columns: repeat(3, 1fr);
+
+  // autofit: Creates as many tracks that can fit based on the width we define (minmax)
+  // grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+
+  grid-gap: 6rem;
+  align-items: start;
+
+  @supports (display: grid) {
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+
+    grid-gap: 6rem;
+    align-items: start;
+  }
+}
+
+.feature {
+  // Progessive enhancement
+  float: left;
+  width: 33.3333%;
+  margin-bottom: 6rem;
+
+  @supports (display: grid) {
+    // Certain things are ignored by grid container and grid items and flexbox container,items are floats,display:inline-block,display:table-cell,vertical align
+
+    width: auto;
+    margin-bottom: 0;
+  }
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  grid-row-gap: 1.5rem;
+  grid-column-gap: 2.5rem;
+  &__icon {
+    fill: $color-primary;
+    width: 4.5rem;
+    height: 4.5rem;
+
+    // -1 this means not the end of the grid but the end of the Explicit grind line. but we didnt define grid-row so theres not any explicit grid.
+    // -1 only works with explicit grid but we had an implicit grid cuz we didnt define the rows.
+    grid-row: 1 / span 2;
+
+    transform: translateY(-1rem);
+  }
+
+  &__text {
+    font-size: 1.7rem;
+  }
+}

@@ -1,0 +1,91 @@
+.story {
+  &__pictures {
+    background-color: $color-primary;
+    grid-column: full-start / col-end 4;
+    background-image: linear-gradient(
+        rgba($color-primary, 0.5),
+        rgba($color-primary, 0.5)
+      ),
+      url(../img/back.jpg);
+    background-size: cover;
+    display: grid;
+    // 6 x 6 grid
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-columns: repeat(6, 1fr);
+
+    // To fix the weird thing in images in grid.
+    align-items: center;
+
+    @media only screen and (max-width: $bp-medium) {
+      grid-column: 1/-1;
+      padding: 6rem;
+    }
+  }
+
+  &__img--1 {
+    // width in % in images so it become flexible
+    width: 100%;
+    grid-row: 2/6;
+    grid-column: 2/6;
+    // Images work a little bit different like it didnt stretched to 6th row stopped in midaway because grids work different in images
+
+    box-shadow: 0 2rem 5rem rgba(#000, 0.1);
+
+    // To make the image stretch all the way of its container grid cell
+    // height: 100%;
+    // object-fit: contain/cover;
+
+    @media only screen and (max-width: $bp-medium) {
+      grid-column: 1 / 5;
+      grid-row: 1 / -1;
+    }
+  }
+  &__img--2 {
+    width: 115%;
+    grid-row: 4 / 6;
+    grid-column: 4/7;
+    z-index: 20;
+    box-shadow: 0 2rem 5rem rgba(#000, 0.2);
+
+    // 1st solution. Use transform origin to make the top and left stay at center and scale it up
+    // transform-origin: top left;
+    // transform: scale(1.2);
+    // Another solution might b using positioning
+    // 2nd solution change the width from 100 to 115%
+
+    @media only screen and (max-width: $bp-medium) {
+      grid-row: 1 / -1;
+      width: 100%;
+    }
+  }
+  &__content {
+    background-color: $color-grey-light-1;
+    grid-column: col-start 5 / full-end;
+
+    // using vw in padding makes it more responsive
+    padding: 6rem 8vw;
+
+    display: flex;
+
+    // Centering 1 dimension to center
+    // flex-direction: column;
+    // justify-content: center;
+    // align-items: flex-start;
+
+    // Center above problem with grid
+    display: grid;
+    align-content: center;
+    justify-items: start;
+    @media only screen and (max-width: $bp-medium) {
+      grid-column: 1/-1;
+
+      grid-row: 5/6;
+    }
+  }
+
+  &__text {
+    font-size: 1.5rem;
+    font-style: italic;
+    margin-bottom: 4rem;
+  }
+}
